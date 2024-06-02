@@ -21,3 +21,32 @@ export const TableButton = styled.button<props>`
       }
 `
 
+export const LargeButton = styled.button`
+      background-color: rgb(${({ theme }) => theme.accent});
+      border: 2px solid white;
+      padding: 5px 10px;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+
+      &:hover {
+        background-color: rgb(${({ theme }) => theme.secondary});
+      }
+`
+
+export const ButtonGroup = styled.div`
+      display: flex;
+      gap: 10px;
+`
+export const FormButton = styled.button<props>`
+  background-color:  ${props => props.background || 'rgb(119, 125, 247)'};
+  color: white;
+  padding: 5px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+
+  &:hover{
+    transform: scale(1.01)
+  }
+`;

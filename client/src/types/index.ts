@@ -1,11 +1,20 @@
 export interface IStudent {
-    id: string;
+    id?: string;
     name: string;
-    age: number;
+    age: string;
     place: string;
     email: string;
     phone: string;
-    education: string;
+    // education: string;
+}
+
+export interface IFilter{
+    name: string;
+    age: string;
+    place: string;
+    email: string;
+    phone: string;
+    [key: string]: string;
 }
 
 export interface ITheme {

@@ -6,7 +6,7 @@ export const Table = styled.table`
     border: 1px solid rgba(190, 192, 196, 0.5);
     margin-top: 20px;
 
-    @media(max-width: 700px){
+    @media(max-width: 765px){
         border: 2px solid rgb(${({ theme }) => theme.accent});
     }
 `
@@ -16,7 +16,7 @@ export const TableHeader = styled.thead`
         background-color: rgb(${({ theme }) => theme.accent});
     }
 
-    @media(max-width: 700px){
+    @media(max-width: 765px){
        tr{
         display: none;
        }
@@ -31,7 +31,7 @@ export const TableBody = styled.tbody`
         background-color:#e1e2e6;
     }
 
-    @media(max-width: 700px){
+    @media(max-width: 765px){
         tr:hover{
             background-color: ${({ theme }) => theme.backgroundColor} !important;
         }
@@ -44,7 +44,7 @@ export const TableBody = styled.tbody`
 export const TableRow = styled.tr`
     padding: .45em;
 
-    @media(max-width: 700px){
+    @media(max-width: 765px){
         display: block;
     }
 `
@@ -67,7 +67,7 @@ export const TableData = styled.td<{ dataTitle: string }>`
     hyphens: auto;
     white-space: normal !important;
 
-    @media(max-width: 700px){
+    @media(max-width: 765px){
         text-align: right;
         display: block;
         max-width: 100%;
@@ -78,5 +78,11 @@ export const TableData = styled.td<{ dataTitle: string }>`
           }
     }
    
+`
+
+export const TableFooter = styled.footer`
+    margin: 20px;
+    display: flex;
+    justify-content: end;
 `
 

@@ -7,7 +7,8 @@ export const StyledHeader = styled.header`
   position: sticky;
   top: 0;
   color: white;
- 
+  display: flex;
+  justify-content: space-between;
 
   h1{
     font-size: ${({ theme }) => theme.fonts.f1}

@@ -8,6 +8,7 @@ export const RowSelector = styled.div`
     select {
         width: 50px;
         height: 30px;
+        border:1px solid rgba(190, 192, 196, 0.8);
         border-radius: 5px;
         outline: none;
     }
