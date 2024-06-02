@@ -55,7 +55,7 @@ Prerequisites
   npm run dev
   ```
 
-## Implementation of a sample react vite application
+## Implementation of a sample react vite application with material ui and styled component
 
 Initialize the project with Vite:
 

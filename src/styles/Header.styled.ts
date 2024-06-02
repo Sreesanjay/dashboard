@@ -9,6 +9,7 @@ export const StyledHeader = styled.header`
   color: white;
   display: flex;
   justify-content: space-between;
+  z-index: 20;
 
   h1{
     font-size: ${({ theme }) => theme.fonts.f1}
