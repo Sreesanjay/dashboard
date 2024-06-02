@@ -13,13 +13,14 @@ import {
 import { IFilter, IStudent } from "../types";
 import { TableButton } from "../styles/Button.styled";
 import { PageHeading } from "../styles/Header.styled";
-import { RowSelector } from "../styles/StudentList";
+import { Row, RowSelector } from "../styles/StudentList";
 import { SearchInput } from "../styles/Input.styled";
 import { ChangeEvent, useContext, useEffect, useState } from "react";
 import { getStudentList } from "../services/student";
 import { studentContext } from "../App";
 import StudentModal from "./Modal";
 import ConfirmModal from "./ConfirmModal";
+import ExcelExport from "./ExcelExport";
 
 const StudentList = () => {
      const { studentData, deleteStudent } = useContext(studentContext);
@@ -37,10 +38,18 @@ const StudentList = () => {
      });
      const [editStudentId, seteditStudentId] = useState<null | string>(null);
      const [openEditModal, setOpenEditModal] = useState(false);
+     const [deleteStudentId, setDeleteStudentId] = useState<null | string>(
+          null
+     );
      const [openConfirmDelete, setOpenConfirmDelete] = useState(false);
+     
 
-     function ConfirmDelete(state) {
-
+     function confirmDelete(state: boolean) {
+          if (state) {
+               deleteStudent(deleteStudentId as string);
+               setDeleteStudentId(null);
+          }
+          setOpenConfirmDelete(false);
      }
 
      /**
@@ -49,7 +58,7 @@ const StudentList = () => {
       */
      function handleDelete(id: string) {
           setOpenConfirmDelete(true);
-          deleteStudent(id);
+          setDeleteStudentId(id);
      }
 
      /**
@@ -101,7 +110,7 @@ const StudentList = () => {
           <Container>
                <header>
                     <PageHeading>Student List</PageHeading>
-                    <>
+                    <Row>
                          <RowSelector>
                               <select
                                    defaultValue={10}
@@ -114,7 +123,8 @@ const StudentList = () => {
                               </select>
                               <span>Entries Per Page</span>
                          </RowSelector>
-                    </>
+                         <ExcelExport data={filteredList} fileName={'studentdata'}/>
+                    </Row>
                </header>
 
                <Table>
@@ -229,10 +239,10 @@ const StudentList = () => {
                     id={editStudentId as string}
                />
                <ConfirmModal
-                    openModal={}
-                    setOpenModal={}
-                    text={}
-                    handleOutput={}
+                    openModal={openConfirmDelete}
+                    setOpenModal={setOpenConfirmDelete}
+                    text={"Are you sure, You want to delete this student"}
+                    handleOutput={confirmDelete}
                />
           </Container>
      );

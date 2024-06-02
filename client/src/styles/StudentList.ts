@@ -17,3 +17,8 @@ export const RowSelector = styled.div`
         font-size: ${({ theme }) => theme.fonts.f5};
     }
 `
+
+export const Row = styled.div`
+    display: flex;
+    justify-content: space-between;
+`

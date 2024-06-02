@@ -10,6 +10,27 @@ export const ModalBody = styled.div`
         width: 90vw;
     }
 `
+export const ConfirmModalBody = styled.div`
+    background-color: ${({ theme }) => theme.backgroundColor || '#F2F2F2'};
+    width: 100%;
+    height: 20vh;
+    padding: 10px 30px;
+    display: flex; 
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+
+    div{
+        display: flex;
+        gap: 10px;
+    }
+
+    @media(max-width: 765px){
+        width: 90vw;
+    }
+
+    
+`
 
 export const ModalStyle = {
     position: 'absolute' ,

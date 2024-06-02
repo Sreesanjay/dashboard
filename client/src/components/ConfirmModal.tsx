@@ -1,7 +1,7 @@
 import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
 import { Dispatch, SetStateAction } from "react";
-import { ModalBody, ModalStyle } from "../styles/Modal.styled";
+import { ConfirmModalBody, ModalStyle } from "../styles/Modal.styled";
 import { FormButton } from "../styles/Button.styled";
 
 const ConfirmModal = ({
@@ -26,19 +26,21 @@ const ConfirmModal = ({
                aria-describedby="modal-modal-description"
           >
                <Box sx={ModalStyle}>
-                    <ModalBody>
+                    <ConfirmModalBody>
                          <h3>{text}</h3>
-                         <FormButton
-                              background="red"
-                              onClick={() => handleOutput(false)}
-                         >
-                              Cancel
-                         </FormButton>
+                         <div>
+                              <FormButton
+                                   background="red"
+                                   onClick={() => handleOutput(false)}
+                              >
+                                   Cancel
+                              </FormButton>
 
-                         <FormButton onClick={() => handleOutput(true)}>
-                              Confirm
-                         </FormButton>
-                    </ModalBody>
+                              <FormButton onClick={() => handleOutput(true)}>
+                                   Confirm
+                              </FormButton>
+                         </div>
+                    </ConfirmModalBody>
                </Box>
           </Modal>
      );

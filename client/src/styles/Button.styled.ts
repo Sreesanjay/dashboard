@@ -28,6 +28,9 @@ export const LargeButton = styled.button`
       color: white;
       border-radius: 5px;
       cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 10px;
 
       &:hover {
         background-color: rgb(${({ theme }) => theme.secondary});
@@ -37,6 +40,7 @@ export const LargeButton = styled.button`
 export const ButtonGroup = styled.div`
       display: flex;
       gap: 10px;
+      margin: 20px 0;
 `
 export const FormButton = styled.button<props>`
   background-color:  ${props => props.background || 'rgb(119, 125, 247)'};

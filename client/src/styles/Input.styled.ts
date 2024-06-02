@@ -3,7 +3,7 @@ import { styled } from "styled-components";
 export const SearchInput = styled.input.attrs({
     type: 'text',
 })`
-    max-width: 140px;
+    max-width: 110px;
     text-indent: 5px;
     height: 25px;
     border-radius: 5px;
