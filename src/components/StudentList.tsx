@@ -42,7 +42,6 @@ const StudentList = () => {
           null
      );
      const [openConfirmDelete, setOpenConfirmDelete] = useState(false);
-     
 
      function confirmDelete(state: boolean) {
           if (state) {
@@ -79,6 +78,7 @@ const StudentList = () => {
           event: React.ChangeEvent<unknown>,
           value: number
      ) => {
+          event.preventDefault();
           setPage(value);
      };
 
@@ -123,7 +123,10 @@ const StudentList = () => {
                               </select>
                               <span>Entries Per Page</span>
                          </RowSelector>
-                         <ExcelExport data={filteredList} fileName={'studentdata'}/>
+                         <ExcelExport
+                              data={filteredList}
+                              fileName={"studentdata"}
+                         />
                     </Row>
                </header>
 
