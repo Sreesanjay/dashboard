@@ -47,6 +47,10 @@ export const TableRow = styled.tr`
     @media(max-width: 765px){
         display: block;
     }
+    
+    &.selectedRow{
+        background-color:  #c1c2c7 !important;
+    }
 `
 
 export const TableHead = styled.th`

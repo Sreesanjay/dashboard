@@ -5,10 +5,12 @@ const Input = ({
      label,
      name,
      type,
+     error,
      value,
      handleChange,
 }: {
      label: string;
+     error: string;
      name: string;
      type: string;
      value: string;
@@ -17,6 +19,7 @@ const Input = ({
      return (
           <FormControl>
                <label>{label}</label>
+               {error && <small>{error}</small>}
                <input
                     type={type}
                     name={name}

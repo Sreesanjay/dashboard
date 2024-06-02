@@ -1,5 +1,6 @@
 import { Container } from "../styles/Container.styled";
 import Pagination from "@mui/material/Pagination";
+import hotkeys from "hotkeys-js";
 import {
      Table,
      TableHeader,
@@ -10,24 +11,27 @@ import {
      TableFooter,
 } from "../styles/table.styled";
 
+import DeleteIcon from "@mui/icons-material/Delete";
+import EditIcon from "@mui/icons-material/Edit";
 import { IFilter, IStudent } from "../types";
-import { TableButton } from "../styles/Button.styled";
 import { PageHeading } from "../styles/Header.styled";
 import { Row, RowSelector } from "../styles/StudentList";
-import { SearchInput } from "../styles/Input.styled";
+import { LargeSearchBox, SearchInput } from "../styles/Input.styled";
 import { ChangeEvent, useContext, useEffect, useState } from "react";
 import { getStudentList } from "../services/student";
 import { studentContext } from "../App";
 import StudentModal from "./Modal";
 import ConfirmModal from "./ConfirmModal";
 import ExcelExport from "./ExcelExport";
+import { IconButton, Tooltip } from "@mui/material";
+import KeyLabels from "./KeyLabels";
 
 const StudentList = () => {
      const { studentData, deleteStudent } = useContext(studentContext);
-
      const [filteredList, setFilteredList] = useState<IStudent[] | []>([]);
      const [page, setPage] = useState(1);
      const [entries, setEntries] = useState(10);
+     const [selectedColumn, setSelectedColumn] = useState<string>("name");
      const [filter, setFilter] = useState<IFilter>({
           id: "",
           name: "",
@@ -42,6 +46,13 @@ const StudentList = () => {
           null
      );
      const [openConfirmDelete, setOpenConfirmDelete] = useState(false);
+     const [selectedRow, setSelectedRow] = useState<string>("");
+
+     useEffect(() => {
+          if (filteredList.length) {
+               setSelectedRow(filteredList[0].id as string);
+          }
+     }, [filteredList]);
 
      function confirmDelete(state: boolean) {
           if (state) {
@@ -59,6 +70,20 @@ const StudentList = () => {
           setOpenConfirmDelete(true);
           setDeleteStudentId(id);
      }
+
+     //keyboard accessibility for deleting student
+     hotkeys("del", function (event) {
+          // Prevent the default refresh event under WINDOWS system
+          event.preventDefault();
+          handleDelete(selectedRow);
+     });
+
+     //keyboard accessibility for deleting student
+     hotkeys("ctrl+e", function (event) {
+          // Prevent the default refresh event under WINDOWS system
+          event.preventDefault();
+          handleEditStudent(selectedRow);
+     });
 
      /**
       * method for updating search data
@@ -123,11 +148,33 @@ const StudentList = () => {
                               </select>
                               <span>Entries Per Page</span>
                          </RowSelector>
+                         <KeyLabels />
                          <ExcelExport
                               data={filteredList}
                               fileName={"studentdata"}
                          />
                     </Row>
+                    <LargeSearchBox>
+                         <select
+                              name=""
+                              id=""
+                              onChange={(e) =>
+                                   setSelectedColumn(e.target.value)
+                              }
+                         >
+                              <option value="name">Name</option>
+                              <option value="age">Age</option>
+                              <option value="email">Email</option>
+                              <option value="place">Place</option>
+                              <option value="phone">Phone</option>
+                         </select>
+                         <input
+                              type="text"
+                              name={selectedColumn}
+                              placeholder="Search"
+                              onChange={handleChange}
+                         />
+                    </LargeSearchBox>
                </header>
 
                <Table>
@@ -184,7 +231,18 @@ const StudentList = () => {
                     <TableBody>
                          {filteredList.map((student: IStudent) => {
                               return (
-                                   <TableRow>
+                                   <TableRow
+                                        onClick={() =>
+                                             setSelectedRow(
+                                                  student?.id as string
+                                             )
+                                        }
+                                        className={`${
+                                             selectedRow === student.id
+                                                  ? "selectedRow"
+                                                  : ""
+                                        }`}
+                                   >
                                         <TableData dataTitle={"ID"}>
                                              {student.id}
                                         </TableData>
@@ -204,24 +262,28 @@ const StudentList = () => {
                                              {student.place}
                                         </TableData>
                                         <TableData dataTitle={"manage"}>
-                                             <TableButton
-                                                  onClick={() =>
-                                                       handleDelete(
-                                                            student.id as string
-                                                       )
-                                                  }
-                                             >
-                                                  Delete
-                                             </TableButton>
-                                             <TableButton
-                                                  onClick={() =>
-                                                       handleEditStudent(
-                                                            student.id as string
-                                                       )
-                                                  }
-                                             >
-                                                  Edit
-                                             </TableButton>
+                                             <Tooltip title="Delete">
+                                                  <IconButton
+                                                       onClick={() =>
+                                                            handleDelete(
+                                                                 student.id as string
+                                                            )
+                                                       }
+                                                  >
+                                                       <DeleteIcon />
+                                                  </IconButton>
+                                             </Tooltip>
+                                             <Tooltip title="Edit">
+                                                  <IconButton
+                                                       onClick={() =>
+                                                            handleEditStudent(
+                                                                 student.id as string
+                                                            )
+                                                       }
+                                                  >
+                                                       <EditIcon />
+                                                  </IconButton>
+                                             </Tooltip>
                                         </TableData>
                                    </TableRow>
                               );

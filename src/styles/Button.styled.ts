@@ -7,11 +7,9 @@ type props = {
 }
 
 export const TableButton = styled.button<props>`
-    background-color: ${props => props.background || 'white'};
-    color: ${props => props.color || 'black'};
-    border: 1px solid ${props => props.border || 'gray'};
-    border-radius: 3px;
-    padding: 2px 10px;
+    border: none;
+    background: transparent;
+    margin-right: 10px;
     opacity: 0.9;
     cursor: pointer;
 
@@ -26,6 +24,7 @@ export const LargeButton = styled.button`
       border: 2px solid white;
       padding: 5px 10px;
       color: white;
+      height: 45px;
       border-radius: 5px;
       cursor: pointer;
       display: flex;

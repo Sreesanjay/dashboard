@@ -3,6 +3,7 @@ import * as XLSX from "xlsx";
 import { IStudent } from "../types";
 import { LargeButton } from "../styles/Button.styled";
 import SimCardDownloadIcon from "@mui/icons-material/SimCardDownload";
+import hotkeys from "hotkeys-js";
 
 const ExcelExport = ({
      data,
@@ -24,6 +25,13 @@ const ExcelExport = ({
           });
           saveAs(blob, `${fileName}.xlsx`);
      };
+
+     //keyboard accessibility for download data
+     hotkeys("ctrl+d", function (event) {
+          // Prevent the default refresh event under WINDOWS system
+          event.preventDefault();
+          exportToExcel();
+     });
 
      return (
           <LargeButton onClick={exportToExcel}>

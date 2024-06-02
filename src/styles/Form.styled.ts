@@ -3,9 +3,12 @@ import styled from "styled-components";
 export const FormControl = styled.div`
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     gap: 5px;
     width: 100%;
-
+    small{
+        color: red;
+    }
     input{
         height: 35px;
         border-radius: 5px;
