@@ -8,7 +8,6 @@ export const defaultStyles = {
         f6: '12px',
         f7: '11px',
     },
-    primary: '17, 2, 115',
     secondary: '5, 2, 89',
     accent: '119, 125, 247',
     backgroundColor: '#F2F2F2',

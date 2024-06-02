@@ -3,13 +3,14 @@ import ReactDOM from "react-dom/client";
 import GlobalStyles from "./styles/Global.ts";
 import App from "./App.tsx";
 import "./index.css";
-import Theme from "./providers/ThemeProvider.tsx";
+import { defaultStyles } from "./styles/Theme.styled.ts";
+import { ThemeProvider } from "styled-components";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
      <React.StrictMode>
-          <Theme>
+          <ThemeProvider theme={defaultStyles}>
                <GlobalStyles />
                <App />
-          </Theme>
+          </ThemeProvider>
      </React.StrictMode>
 );

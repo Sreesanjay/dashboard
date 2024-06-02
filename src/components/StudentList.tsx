@@ -19,12 +19,12 @@ import { Row, RowSelector } from "../styles/StudentList";
 import { LargeSearchBox, SearchInput } from "../styles/Input.styled";
 import { ChangeEvent, useContext, useEffect, useState } from "react";
 import { getStudentList } from "../services/student";
-import { studentContext } from "../App";
 import StudentModal from "./Modal";
 import ConfirmModal from "./ConfirmModal";
 import ExcelExport from "./ExcelExport";
 import { IconButton, Tooltip } from "@mui/material";
 import KeyLabels from "./KeyLabels";
+import { studentContext } from "../providers/studentProvider";
 
 const StudentList = () => {
      const { studentData, deleteStudent } = useContext(studentContext);

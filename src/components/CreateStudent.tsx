@@ -2,9 +2,9 @@ import { ChangeEvent, useContext, useEffect, useState } from "react";
 import { ButtonGroup, FormButton } from "../styles/Button.styled";
 import { FormGroup } from "../styles/Form.styled";
 import Input from "./Input";
-import { studentContext } from "../App";
 import validateForm from "../services/validateForm";
 import { IForm } from "../types";
+import { studentContext } from "../providers/studentProvider";
 
 const CreateStudent = ({ handleClose }: { handleClose: () => void }) => {
      const { createStudent } = useContext(studentContext);
