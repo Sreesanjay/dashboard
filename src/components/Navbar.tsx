@@ -1,4 +1,5 @@
 import { useState } from "react";
+import hotkeys from "hotkeys-js";
 import { LargeButton } from "../styles/Button.styled";
 import { StyledHeader } from "../styles/Header.styled";
 import StudentModal from "./Modal";
@@ -10,6 +11,12 @@ const Navbar = () => {
           setOpenModal(true);
      }
 
+     //keyboard accessibility for new student
+     hotkeys("n", function (event) {
+          // Prevent the default refresh event under WINDOWS system
+          event.preventDefault();
+          setOpenModal(true);
+     });
      return (
           <>
                <StyledHeader>
@@ -21,7 +28,7 @@ const Navbar = () => {
                <StudentModal
                     openModal={openModal}
                     setOpenModal={setOpenModal}
-                    type={'CREATE'}
+                    type={"CREATE"}
                />
           </>
      );

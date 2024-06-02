@@ -17,10 +17,3 @@ export function getStudentList(page: number, entries: number, searchData: IFilte
     const paginatedData = data.slice(startIndex, endIndex);
     return paginatedData;
 }
-
-export function newSudent(data: IStudent, oldData: IStudent[], studentData: (data: IStudent) => void) {
-    const id = parseInt(oldData[oldData.length - 1].id as string) + 1;
-    data.id = id.toString()
-    studentData(data)
-
-}
